@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Privilege:analyticPrivilege xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Privilege="http://www.sap.com/ndb/BiModelPrivilege.ecore" schemaVersion="1.1" id="APSuper" privilegeType="ANALYTIC_PRIVILEGE">
+<descriptions defaultDescription="APSuper"/>
+<securedModels>
+  <modelUri>/Markian/calculationviews/CVD_PO_12</modelUri>
+  <modelUri>/Markian/calculationviews/THURSDAY_VIEW</modelUri>
+  <modelUri>/Markian/calculationviews/CVD_BP_12</modelUri>
+</securedModels>
+
+<restriction>
+  <filter xsi:type="Privilege:AttributeFilter" attributeName="EMAIL_ADDRESS">
+    <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value=""/>
+  </filter>
+  <dimensionUri>/Markian/calculationviews/CVD_BP_12</dimensionUri>
+</restriction>
+</Privilege:analyticPrivilege>

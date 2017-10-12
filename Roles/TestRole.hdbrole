@@ -1,0 +1,5 @@
+role Markian.Roles::TestRole
+{
+catalog analytic privilege : "_SYS_BI_CP_ALL";
+
+}

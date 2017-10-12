@@ -1,0 +1,30 @@
+FUNCTION "STUDENT12"."Markian::EmployeeSearch" (lastNameFilter NVARCHAR(40), fuzziness decimal(5,2))
+	RETURNS table
+        ( 
+       "FIRST_NAME" NVARCHAR(40),
+       "LAST_NAME" NVARCHAR(40),
+       "SEX" NVARCHAR(1),
+       "LANGUAGE" NVARCHAR(1),
+       "EMAIL_ADDRESS" NVARCHAR(255)
+        )
+	LANGUAGE SQLSCRIPT
+	SQL SECURITY INVOKER AS
+BEGIN
+declare f decimal(5,2);
+f := :fuzziness;
+if :f > 1 or :f < 0 then f := 1.0;
+END IF ;
+
+RETURN
+
+select
+"FIRST_NAME",
+"LAST_NAME",
+"SEX",
+"LANGUAGE",
+"EMAIL_ADDRESS"
+ from "EPM_MODEL"."SNWD_EMPLOYEES"
+ where contains("LAST_NAME", :lastNameFilter, FUZZY(:f))
+ or contains("FIRST_NAME", :lastNameFilter, FUZZY(:f));
+
+END
